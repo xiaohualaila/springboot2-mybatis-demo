@@ -3,20 +3,15 @@ package com.winterchen.demo.controller;
 
 import com.aliyun.openservices.ons.api.Message;
 import com.aliyun.openservices.ons.api.SendResult;
-import com.github.pagehelper.PageInfo;
 import com.winterchen.demo.config.RocketMQConfig;
-import com.winterchen.demo.model.DeviceDomain;
 import com.winterchen.demo.service.user.DeviceService;
-import com.winterchen.demo.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/device")
@@ -59,7 +54,6 @@ public class ProducerController {
      */
     @GetMapping(value = "/receiver")
     public String receiver(){
-        //循环发送消息100次
         rocketMQConfig.consumer2();
         return "接收RocketMq平台发送的消息";
     }
@@ -72,5 +66,12 @@ public class ProducerController {
             @RequestParam(name = "pageSize", required = false, defaultValue = "10")
                     int pageSize){
         return deviceService.findAllDevices(pageNum,pageSize);
+    }
+
+    @RequestMapping(value = "/dd",method = RequestMethod.GET)
+    private Map<String,Object> getBackMsg(Integer id){
+        Map<String,Object> modelMap = new HashMap<>();
+        modelMap.put("sss","接收到的ID"+id);
+        return modelMap;
     }
 }
