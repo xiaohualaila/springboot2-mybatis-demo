@@ -1,47 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.winterchen.demo.dao.BoxUnitDao" >
-  <sql id="BASE_TABLE">
+<mapper namespace="com.winterchen.demo.dao.BoxUnitDao">
+    <sql id="BASE_TABLE">
     box_unit
   </sql>
 
-  <sql id="BASE_COLUMN">
+    <sql id="BASE_COLUMN">
     boxUnitId,ccid,unit,reg,value
   </sql>
 
-  <insert id="insert" parameterType="com.winterchen.demo.model.BoxUnit">
-    INSERT INTO
-      <include refid="BASE_TABLE"/>
-    (boxUnitId,ccid,unit,reg,value)
-    VALUES(#{boxUnitId},#{ccid},#{unit},#{reg},#{value})
-  </insert>
-
-  <select id="selectDevices" resultType="com.winterchen.demo.model.BoxUnit">
-      SELECT
-        <include refid="BASE_COLUMN"/>
-      FROM
+    <insert id="insert" parameterType="com.winterchen.demo.model.BoxUnit">
+        INSERT INTO
         <include refid="BASE_TABLE"/>
-  </select>
+        (boxUnitId,ccid,unit,reg,value)
+        VALUES(#{boxUnitId},#{ccid},#{unit},#{reg},#{value})
+    </insert>
 
-  <!--查询单个-->
-  <select id="selectBoxUnit" parameterType="String" resultType="com.winterchen.demo.model.BoxUnit">
-    SELECT
-    <include refid="BASE_COLUMN"/>
-    FROM
-    <include refid="BASE_TABLE"/>
-    WHERE ccid = #{ccid}
-  </select>
+    <select id="selectDevices" resultType="com.winterchen.demo.model.BoxUnit">
+        SELECT
+        <include refid="BASE_COLUMN"/>
+        FROM
+        <include refid="BASE_TABLE"/>
+    </select>
 
-  <!--更新-->
-  <update id="updateBoxUnit" parameterType="com.winterchen.demo.model.BoxUnit">
-    UPDATE
-    <include refid="BASE_TABLE"/>
-    SET
-    unit = #{unit},reg = #{reg},value = #{value}
-    WHERE ccid = #{ccid}
-  </update>
+    <!--查询单个-->
+    <select id="selectBoxUnit" parameterType="String" resultType="com.winterchen.demo.model.BoxUnit">
+        SELECT
+        <include refid="BASE_COLUMN"/>
+        FROM
+        <include refid="BASE_TABLE"/>
+        WHERE ccid = #{ccid}
+    </select>
 
+    <!--更新-->
+    <update id="updateBoxUnit" parameterType="com.winterchen.demo.model.BoxUnit">
+        UPDATE
+        <include refid="BASE_TABLE"/>
+        SET
+        <if test="unit!=null">unit = #{unit},</if>
+        <if test="reg!=null">reg = #{reg},</if>
+        <if test="value!=null">value = #{value}</if>
+        WHERE ccid = #{ccid}
+    </update>
 
+<!--    <delete id="xxx">-->
+<!--        DELETE FROM-->
+<!--        <include refid="BASE_TABLE"/>-->
+<!--        WHERE-->
+<!--        boxUnitId = #{boxUnitId}-->
+<!--    </delete>-->
 
 
 </mapper>

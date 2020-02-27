@@ -39,7 +39,12 @@
         UPDATE
         <include refid="BASE_TABLE"/>
         SET
-        devName = #{devName},ccid = #{ccid},cmd = #{cmd},devType = #{devType},wirelessType = #{wirelessType}
+          <if test="devName!=null">devName = #{devName},</if>
+          <if test="ccid!=null">ccid = #{ccid},</if>
+          <if test="cmd!=null">cmd = #{cmd},</if>
+          <if test="devType!=null">devType = #{devType},</if>
+          <if test="wirelessType!=null">wirelessType = #{wirelessType}</if>
+
         WHERE devId = #{devId}
     </update>
 
