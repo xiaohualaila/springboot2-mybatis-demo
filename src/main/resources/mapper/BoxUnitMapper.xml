@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.winterchen.demo.dao.BoxUnitDao" >
+  <sql id="BASE_TABLE">
+    box_unit
+  </sql>
+
+  <sql id="BASE_COLUMN">
+    boxUnitId,ccid,unit,reg,value
+  </sql>
+
+  <insert id="insert" parameterType="com.winterchen.demo.model.BoxUnit">
+    INSERT INTO
+      <include refid="BASE_TABLE"/>
+    (boxUnitId,ccid,unit,reg,value)
+    VALUES(#{boxUnitId},#{ccid},#{unit},#{reg},#{value})
+  </insert>
+
+  <select id="selectDevices" resultType="com.winterchen.demo.model.BoxUnit">
+      SELECT
+        <include refid="BASE_COLUMN"/>
+      FROM
+        <include refid="BASE_TABLE"/>
+  </select>
+
+
+</mapper>

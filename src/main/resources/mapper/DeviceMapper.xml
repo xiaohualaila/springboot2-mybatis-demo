@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.winterchen.demo.dao.DeviceDao" >
+  <sql id="BASE_TABLE">
+    t_device
+  </sql>
+
+  <sql id="BASE_COLUMN">
+    deviceId,deviceType,iotId,requestId,productKey,deviceName,temperature,humidity
+  </sql>
+
+  <insert id="insert" parameterType="com.winterchen.demo.model.DeviceDomain">
+    INSERT INTO
+      <include refid="BASE_TABLE"/>
+    (deviceId,deviceType,iotId,requestId,productKey,deviceName,temperature,humidity)
+    VALUES(#{deviceId},#{deviceType},#{iotId},#{requestId},#{productKey},#{deviceName},#{temperature},#{humidity})
+  </insert>
+
+  <select id="selectDevices" resultType="com.winterchen.demo.model.DeviceDomain">
+      SELECT
+        <include refid="BASE_COLUMN"/>
+      FROM
+        <include refid="BASE_TABLE"/>
+  </select>
+
+
+</mapper>
