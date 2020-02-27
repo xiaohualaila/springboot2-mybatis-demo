@@ -11,4 +11,8 @@ public interface BoxDeviceDao {
     int insert(BoxDeviceDomain boxDeviceDomain);
 
     List<BoxDeviceDomain> selectDevices();
+
+    BoxDeviceDomain selectBoxDevice(String devId);
+
+    int updateBoxDevice(BoxDeviceDomain boxDeviceDomain);
 }

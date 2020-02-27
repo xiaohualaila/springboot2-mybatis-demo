@@ -12,4 +12,8 @@ public interface BoxDeviceService {
     int addDevice(BoxDeviceDomain boxDeviceDomain);
 
     PageInfo<BoxDeviceDomain> findAllDevices(int pageNum, int pageSize);
+
+    BoxDeviceDomain selectBoxDevice(String devId);
+
+    int updateBoxDevice(BoxDeviceDomain boxDeviceDomain);
 }

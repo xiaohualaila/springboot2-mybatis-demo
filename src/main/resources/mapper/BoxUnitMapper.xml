@@ -23,5 +23,25 @@
         <include refid="BASE_TABLE"/>
   </select>
 
+  <!--查询单个-->
+  <select id="selectBoxUnit" parameterType="String" resultType="com.winterchen.demo.model.BoxUnit">
+    SELECT
+    <include refid="BASE_COLUMN"/>
+    FROM
+    <include refid="BASE_TABLE"/>
+    WHERE ccid = #{ccid}
+  </select>
+
+  <!--更新-->
+  <update id="updateBoxUnit" parameterType="com.winterchen.demo.model.BoxUnit">
+    UPDATE
+    <include refid="BASE_TABLE"/>
+    SET
+    unit = #{unit},reg = #{reg},value = #{value}
+    WHERE ccid = #{ccid}
+  </update>
+
+
+
 
 </mapper>

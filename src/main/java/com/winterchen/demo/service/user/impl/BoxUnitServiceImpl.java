@@ -34,4 +34,14 @@ public class BoxUnitServiceImpl implements BoxUnitService {
         return result;
     }
 
+
+    @Override
+    public BoxUnit selectBoxDevice(String ccid) {
+        return boxUnitDao.selectBoxUnit(ccid);
+    }
+
+    @Override
+    public int updateBoxUnit(BoxUnit boxUnit) {
+        return boxUnitDao.updateBoxUnit(boxUnit);
+    }
 }

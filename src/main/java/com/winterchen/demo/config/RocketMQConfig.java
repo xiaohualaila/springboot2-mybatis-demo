@@ -125,7 +125,13 @@ public class RocketMQConfig {
                         bean.getDev_id()
                 );
 
-
+                // boxDeviceService.addDevice(boxDeviceDomain);
+                BoxDeviceDomain device = boxDeviceService.selectBoxDevice(boxDeviceDomain.getDevId());
+                if(device!=null){
+                    boxDeviceService.updateBoxDevice(boxDeviceDomain);
+                }else {
+                    boxDeviceService.addDevice(device);
+                }
 
                 List<BoxDeviceBean.DataBean> dataBeans = bean.getData();
                 for (BoxDeviceBean.DataBean dataBean:dataBeans) {
@@ -135,11 +141,14 @@ public class RocketMQConfig {
                             dataBean.getReg(),
                             dataBean.getValue()
                     );
-                    boxUnitService.addDevice(boxUnit);
+                   // boxUnitService.addDevice(boxUnit);
+                    BoxUnit unit = boxUnitService.selectBoxDevice( bean.getCcid());
+                    if(unit!=null){
+                        boxUnitService.updateBoxUnit(boxUnit);
+                    }else{
+                         boxUnitService.addDevice(boxUnit);
+                    }
                 }
-
-                boxDeviceService.addDevice(boxDeviceDomain);
-
                 return Action.CommitMessage;
             }
         });

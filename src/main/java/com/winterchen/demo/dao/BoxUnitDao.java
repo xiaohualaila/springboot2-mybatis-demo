@@ -11,5 +11,7 @@ public interface BoxUnitDao {
 
     List<BoxUnit> selectDevices();
 
+    BoxUnit selectBoxUnit(String ccid);
 
+    int updateBoxUnit(BoxUnit boxUnit);
 }

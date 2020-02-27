@@ -9,6 +9,7 @@
     boxId,devName,ccid,cmd,devType,wirelessType,devId
   </sql>
 
+  <!--新增-->
   <insert id="insert" parameterType="com.winterchen.demo.model.BoxDeviceDomain">
     INSERT INTO
       <include refid="BASE_TABLE"/>
@@ -16,6 +17,7 @@
     VALUES(#{boxId},#{devName},#{ccid},#{cmd},#{devType},#{wirelessType},#{devId})
   </insert>
 
+  <!--查询所有-->
   <select id="selectDevices" resultType="com.winterchen.demo.model.BoxDeviceDomain">
       SELECT
         <include refid="BASE_COLUMN"/>
@@ -23,5 +25,22 @@
         <include refid="BASE_TABLE"/>
   </select>
 
+  <!--查询单个-->
+  <select id="selectBoxDevice" parameterType="String" resultType="com.winterchen.demo.model.BoxDeviceDomain">
+    SELECT
+    <include refid="BASE_COLUMN"/>
+    FROM
+    <include refid="BASE_TABLE"/>
+        WHERE devId = #{devId}
+  </select>
+
+  <!--更新-->
+  <update id="updateBoxDevice" parameterType="com.winterchen.demo.model.BoxDeviceDomain">
+        UPDATE
+        <include refid="BASE_TABLE"/>
+        SET
+        devName = #{devName},ccid = #{ccid},cmd = #{cmd},devType = #{devType},wirelessType = #{wirelessType}
+        WHERE devId = #{devId}
+    </update>
 
 </mapper>

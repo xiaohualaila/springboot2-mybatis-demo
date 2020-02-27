@@ -35,4 +35,14 @@ public class BoxDeviceServiceImpl implements BoxDeviceService {
         return result;
     }
 
+    @Override
+    public BoxDeviceDomain selectBoxDevice(String devId) {
+        return deviceDao.selectBoxDevice(devId);
+    }
+
+    @Override
+    public int updateBoxDevice(BoxDeviceDomain boxDeviceDomain) {
+        return deviceDao.updateBoxDevice(boxDeviceDomain);
+    }
+
 }
