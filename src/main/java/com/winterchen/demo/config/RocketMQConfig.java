@@ -130,7 +130,7 @@ public class RocketMQConfig {
                 if(device!=null){
                     boxDeviceService.updateBoxDevice(boxDeviceDomain);
                 }else {
-                    boxDeviceService.addDevice(device);
+                    boxDeviceService.addDevice(boxDeviceDomain);
                 }
 
                 List<BoxDeviceBean.DataBean> dataBeans = bean.getData();
